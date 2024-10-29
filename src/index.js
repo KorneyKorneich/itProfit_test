@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './main.scss';
+import {phoneMask, validateForm, addInputListeners, sendFormData} from "./formHandler"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+document.addEventListener('DOMContentLoaded', () => {
+    phoneMask();
+    addInputListeners();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    const form = document.getElementById("testForm")
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        if (validateForm()) {
+            console.log("here")
+            sendFormData(form)
+        }
+    });
+
+
+    const modal = document.getElementById('modal');
+const openModalButton = document.getElementById('openModal');
+const closeModalButton = document.getElementById('closeModal');
+
+// Открыть модальное окно
+openModalButton.addEventListener('click', () => {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Отключаем прокрутку страницы
+});
+
+// Закрыть модальное окно
+closeModalButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Включаем прокрутку страницы
+});
+
+// Закрыть модальное окно при клике вне его
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Включаем прокрутку страницы
+    }
+});
+});
