@@ -19,23 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
 const openModalButton = document.getElementById('openModal');
 const closeModalButton = document.getElementById('closeModal');
 
-// Открыть модальное окно
+
 openModalButton.addEventListener('click', () => {
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Отключаем прокрутку страницы
+    document.body.style.overflow = 'hidden'; 
 });
 
-// Закрыть модальное окно
+
 closeModalButton.addEventListener('click', () => {
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Включаем прокрутку страницы
+    document.body.style.overflow = 'auto';
 });
 
-// Закрыть модальное окно при клике вне его
+
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Включаем прокрутку страницы
+        document.body.style.overflow = 'auto';
     }
 });
 });
